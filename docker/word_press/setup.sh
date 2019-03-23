@@ -5,3 +5,8 @@ sudo curl -L "https://github.com/javabean/arm-compose/releases/download/1.21.2/d
 sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 sudo rm /usr/local/bin/docker-compose
+
+# build project with compose file
+# https://docs.docker.com/compose/wordpress/s
+docker-compose up -d
+docker-compose down
