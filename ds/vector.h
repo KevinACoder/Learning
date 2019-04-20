@@ -2,8 +2,9 @@
 #define VECTOR_H_
 
 #define INIT_CAP   10
-#define FALSE       0
-#define TRUE        1
+#define INIT_VEC(vec) vector vec; init_vec(&vec, INIT_CAP)
+#define FREE_VEC(vec) reset_vec(&(vec))
+#define REINIT_VEC(vec) reset_vec(&(vec)); init_vec(&vec, INIT_CAP)
 
 typedef struct vector{
     int    cap;
@@ -20,6 +21,7 @@ void *pop_back_vec(vector *v);
 void *pop_front_vec(vector *v);
 void insert_vec(vector *v, void *item, int ix);
 void *del_at_vec(vector *v, int ix);
+int total_vec(vector *v);
 
 void test_vec();
 

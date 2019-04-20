@@ -23,6 +23,7 @@ void push_back_vec(vector *v, void *item){
 }
 
 void print_vec(vector *v){
+    printf("vec[%d]:", v->len);
     for(int i = 0; i < v->len; i++){
         printf("%d ", (int)v->items[i]);
     }
@@ -95,6 +96,10 @@ void reset_vec(vector *v){
     free(v->items);
     v->cap = 0;
     v->len = 0;
+}
+
+int total_vec(vector *v){
+    return v->len;
 }
 
 void test_vec(){
