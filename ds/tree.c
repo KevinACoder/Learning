@@ -200,8 +200,41 @@ void de_serialize(bs_tree *t, vector *serie){
     de_serialize_helper(&(t->root), serie);
 }
 
+static void post_order_helper(bst_node *root, vector *v){
+    if(!root)
+        return;
+    
+    INIT_VEC(s1);
+    INIT_VEC(s2);
+
+    push_back_vec(&s1, root);
+    bst_node *curr = NULL;
+
+    while(total_vec(&s1) > 0){
+        curr = pop_back_vec(&s1);
+        push_back_vec(&s2, curr);
+
+        if(curr->left)
+            push_back_vec(&s1, curr->left);
+        if(curr->right)
+            push_back_vec(&s1, curr->right);
+    }
+
+    while(total_vec(&s2) > 0){
+        curr = pop_back_vec(&s2);
+        push_back_vec(v, curr->key);
+    }
+
+    FREE_VEC(s1);
+    FREE_VEC(s2);
+}
+
+void post_order(bs_tree *t, vector *v){
+    post_order_helper(t->root, v);
+}
+
 void test_bst(){
-    int nums[] = {3, 1, 5, 7, 6, 4, 2};
+    int nums[] = {3, 1, 5, 7, 3, 6, 6, 4, 2};
     int len = ITEMS_OF(nums);
     INIT_TREE(tree);
     INIT_VEC(serie);
@@ -232,6 +265,10 @@ void test_bst(){
 
     REINIT_VEC(serie);
     in_order(&tree3, &serie);
+    print_vec(&serie);
+
+    REINIT_VEC(serie);
+    post_order(&tree3, &serie);
     print_vec(&serie);
 
     FREE_VEC(serie2);

@@ -31,6 +31,7 @@ void pre_order_recur(bs_tree *t, vector *v);
 void in_order(bs_tree *t, vector *v);
 void serialize(bs_tree *t, vector *serie);
 void de_serialize(bs_tree *t, vector *serie);
+void post_order(bs_tree *t, vector *v);
 
 int key_cmp(void *k1, void *k2);
 
