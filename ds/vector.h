@@ -22,6 +22,7 @@ void *pop_front_vec(vector *v);
 void insert_vec(vector *v, void *item, int ix);
 void *del_at_vec(vector *v, int ix);
 int total_vec(vector *v);
+void set_data_vec(vector *v, int *items, int len);
 
 void test_vec();
 

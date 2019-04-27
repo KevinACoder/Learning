@@ -102,6 +102,16 @@ int total_vec(vector *v){
     return v->len;
 }
 
+void set_data_vec(vector *v, int *items, int len){
+    if(v->len < len)
+        resize_vec(v, len*2);
+
+    for(int i = 0; i < len; i++){
+        v->items[i] = (void *)(long)(items[i]);
+    }
+    v->len = len;
+}
+
 void test_vec(){
     vector v;
     init_vec(&v, INIT_CAP);
