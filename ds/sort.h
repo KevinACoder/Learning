@@ -2,8 +2,7 @@
 #define SORT_H
 #include <stdbool.h>
 #include "vector.h"
-
-typedef bool (*cmp_func) (void *, void *);
+#include "comm.h"
 
 void bubble_sort_vec(vector *v, cmp_func cmp);
 void insert_sort_vec(vector *v, cmp_func cmp);

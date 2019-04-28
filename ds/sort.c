@@ -1,7 +1,6 @@
 #include "sort.h"
-#include "comm.h"
 
-static bool less_val_cmp(void *lhs, void *rhs){
+bool less_val_cmp(void *lhs, void *rhs){
     if((int)lhs <= (int)rhs){
         return true;
     }else{
@@ -9,18 +8,12 @@ static bool less_val_cmp(void *lhs, void *rhs){
     }
 }
 
-static bool more_val_cmp(void *lhs, void *rhs){
+bool more_val_cmp(void *lhs, void *rhs){
     if((int)lhs >= (int)rhs){
         return true;
     }else{
         return false;
     }
-}
-
-static void swap(void **lhs, void **rhs){
-    void *tmp = *lhs;
-    *lhs = *rhs;
-    *rhs = tmp;
 }
 
 void bubble_sort_vec(vector *v, cmp_func cmp){

@@ -14,6 +14,11 @@
 #define ITEMS_OF(arr)  sizeof(arr)/sizeof(arr[0])     
 
 void err_exit(const char *msg);
+void swap(void **rhs, void **lhs);
+
+typedef bool (*cmp_func) (void *, void *);
+bool less_val_cmp(void *lhs, void *rhs);
+bool more_val_cmp(void *lhs, void *rhs);
 
 #define MEM_ERR  "Fail to allocate memory"
 
