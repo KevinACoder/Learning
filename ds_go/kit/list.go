@@ -19,7 +19,7 @@ type List struct {
 }
 
 func NewList() (lst *List) {
-	lst = &List{}
+	lst = &List{} //escpae once return
 	return
 }
 
@@ -28,9 +28,11 @@ func (lst *List) Ints2Lst(nums []Val_t) {
 		return
 	}
 
+	//create a dummy node
 	dummy := &ListNode{Val: math.MaxInt32}
 	prevNode := dummy
 	lst.Len = 0
+	//create new node and link as tail
 	for _, n := range nums {
 		newNode := &ListNode{Val: n}
 		prevNode.Next = newNode
@@ -38,6 +40,7 @@ func (lst *List) Ints2Lst(nums []Val_t) {
 		prevNode = newNode
 	}
 
+	//update head and tail
 	if lst.Len > 0 {
 		lst.Head = dummy.Next
 		lst.Tail = prevNode
@@ -65,6 +68,7 @@ func (lst *List) Print() {
 	}
 }
 
+/*ret node at index idx*/
 func (lst *List) GetAt(idx int) *ListNode {
 	if idx < 0 || idx > lst.Len {
 		panic("index out of boundary")
@@ -77,6 +81,7 @@ func (lst *List) GetAt(idx int) *ListNode {
 	return curr
 }
 
+/*append node as tail*/
 func (lst *List) PushBack(item Val_t) {
 	newNode := &ListNode{Val: item}
 	if lst.Len <= 0 {
@@ -88,6 +93,7 @@ func (lst *List) PushBack(item Val_t) {
 	lst.Len++
 }
 
+/*preppend node as head*/
 func (lst *List) PushFront(item Val_t) {
 	newNode := &ListNode{Val: item}
 	if lst.Len <= 0 {
@@ -99,6 +105,7 @@ func (lst *List) PushFront(item Val_t) {
 	lst.Len++
 }
 
+/*insert node at index idx*/
 func (lst *List) InsertAt(idx int, item Val_t) {
 	if idx < 0 || idx > lst.Len {
 		panic("index out of boundary")
@@ -128,6 +135,7 @@ func (lst *List) InsertAt(idx int, item Val_t) {
 	lst.Tail = curr
 }
 
+/*remove the tail node*/
 func (lst *List) PopBack() (ret Val_t) {
 	if lst.Len < 1 {
 		panic("no item to pop")
@@ -137,15 +145,18 @@ func (lst *List) PopBack() (ret Val_t) {
 		lst.Head, lst.Tail = nil, nil
 	} else {
 		prevTail := lst.Head
+		//move to the tail
 		for prevTail.Next != lst.Tail {
 			prevTail = prevTail.Next
 		}
+		//unlink tail node, it will be re-collected
 		lst.Tail = prevTail
 	}
 	lst.Len--
 	return
 }
 
+/*remove the head node*/
 func (lst *List) PopFront() (ret Val_t) {
 	if lst.Len < 1 {
 		panic("no item to pop")
@@ -160,6 +171,7 @@ func (lst *List) PopFront() (ret Val_t) {
 	return
 }
 
+/*remove the node at index idx*/
 func (lst *List) RemoveAt(idx int) (ret Val_t) {
 	if idx < 0 || idx > lst.Len {
 		panic("index out of boundary")
@@ -178,6 +190,7 @@ func (lst *List) RemoveAt(idx int) (ret Val_t) {
 	return
 }
 
+/*reverse list start from head*/
 func reverse(head *ListNode) *ListNode {
 	var prev, curr *ListNode = nil, head
 
@@ -191,6 +204,7 @@ func reverse(head *ListNode) *ListNode {
 	return prev
 }
 
+/*reverse the list between from and to th node*/
 func (lst *List) Reverse(from, to int) {
 	if from < 0 || from >= lst.Len || to < 0 ||
 		to >= lst.Len || from > to {
