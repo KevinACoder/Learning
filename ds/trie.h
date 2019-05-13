@@ -6,12 +6,12 @@
 #define KEY_SET_NUM 26
 
 typedef struct trie_node {
-bool is_word;
-struct trie_node *children[KEY_SET_NUM];
+    bool is_word;
+    struct trie_node *children[KEY_SET_NUM];
 } trie_node;
 
 typedef struct trie {
-trie_node *root;
+    trie_node *root;
 } trie;
 
 void init_trie(trie *t);
